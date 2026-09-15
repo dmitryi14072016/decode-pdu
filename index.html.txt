@@ -2,66 +2,69 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>Декодер: Панель 01</title>
+  <title>Панель декодера</title>
   <style>
     body {
       background: #0f0f12;
-      color: #00ff41;
-      font-family: 'Courier New', Courier, monospace;
-      max-width: 600px;
-      margin: 40px auto;
+      color: #c0c0c0;
+      font-family: monospace;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+    h1 { color: #00ff00; text-shadow: 0 0 8px #00ff00; }
+    .container {
+      border: 2px solid #444;
       padding: 20px;
+      background: #1a1a22;
+      box-shadow: 0 0 15px rgba(0,0,0,0.5);
     }
-    h1 {
-      text-transform: uppercase;
-      letter-spacing: 3px;
-      border-bottom: 1px solid #00ff41;
-      padding-bottom: 10px;
-    }
-    textarea {
+    textarea, input {
       width: 100%;
-      height: 120px;
-      background: #000;
-      color: #00ff41;
-      border: 1px solid #333;
       padding: 10px;
-      font-family: inherit;
+      background: #000;
+      color: #0f0;
+      border: 1px solid #333;
+      font-family: monospace;
+      resize: none;
       box-sizing: border-box;
-      resize: vertical;
     }
     button {
-      margin-top: 15px;
+      margin-top: 12px;
       padding: 10px 20px;
-      background: #00ff41;
-      color: #000;
-      border: none;
+      background: #222;
+      color: white;
+      border: 1px solid #555;
       cursor: pointer;
-      font-weight: bold;
-      text-transform: uppercase;
     }
-    button:hover {
-      background: #fff;
-    }
+    button:hover { background: #444; }
     #result {
-      margin-top: 20px;
+      margin-top: 15px;
+      padding: 10px;
+      border: 1px dashed #555;
       white-space: pre-wrap;
-      word-break: break-word;
     }
   </style>
 </head>
 <body>
-  <h1>Панель декодера 01</h1>
-  <p>Введите зашифрованный текст:</p>
-  <textarea id="input" placeholder="Вставьте сюда зашифрованное сообщение..."></textarea>
-  <br>
-  <button onclick="decrypt()">Расшифровать</button>
+  <h1>Панель декодера</h1>
+  <div class="container">
+    <label>Зашифрованный текст:</label>
+    <textarea id="input" rows="4" placeholder="Вставьте сюда зашифрованное сообщение..."></textarea>
 
-  <div id="result"></div>
+    <button onclick="decrypt()">Расшифровать</button>
+
+    <label>Результат:</label>
+    <div id="result"></div>
+  </div>
 
   <script>
-
+   
     const decryptMap = {
-      "B" : "А",
+     "B" : "А",
    "." : "Б",
    "D" : "В",
    "," : "Г",
@@ -101,7 +104,7 @@
         if (decryptMap.hasOwnProperty(ch)) {
           output += decryptMap[ch];
         } else {
-          output += ch;
+          output += ch; // оставляем как есть (пробелы, цифры и т.д.)
         }
       }
 
